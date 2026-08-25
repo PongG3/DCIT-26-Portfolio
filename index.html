@@ -1,81 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Student Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portfolio</title>
+  <style>
+    /* Global Variables & Reset */
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --accent-color: #6366f1;
+      --accent-hover: #4f46e5;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent-color);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Main Container & Sections */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding-top: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--card-bg);
+      transform: translateY(-2px);
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    /* Cards & Grids */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Skill Badges */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">MyPortfolio</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <a href="#home" class="logo">Student<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section class="hero">
-        <h1>Hi, I'm <span class="highlight">[Your Name]</span></h1>
-        <p>A passionate student building projects and learning web development.</p>
-        <a href="#projects" class="btn">View My Work</a>
+  <main>
+    <!-- Home Section -->
+    <section id="home" class="hero">
+      <h1>Hello, I'm <span class="gradient-text">[Your Name]</span></h1>
+      <p>Welcome to my academic space. I build digital projects, conduct research, and document my learning journey.</p>
+      <div class="btn-group">
+        <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+        <a href="#about" class="btn btn-secondary">More About Me</a>
+      </div>
     </section>
 
-    <section id="about" class="container">
-        <h2>About Me</h2>
-        <p>I am currently a student interested in technology, design, and problem-solving. This portfolio showcases my academic work, personal projects, and skills as I continue learning.</p>
-    </section>
+    <!-- About Me Section -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-desc">A brief introduction to my background, education, and skills.</p>
 
-    <section id="projects" class="container">
-        <h2>School Projects</h2>
-        <div class="project-grid">
-            
-            <div class="project-card">
-                <h3>Science Fair Project</h3>
-                <p>A research project analyzing local water quality using data collection and charts.</p>
-                <span class="tag">Research</span>
-            </div>
-
-            <div class="project-card">
-                <h3>History Essay & Presentation</h3>
-                <p>An interactive digital presentation covering major historical events of the 20th century.</p>
-                <span class="tag">History</span>
-            </div>
-
-            <div class="project-card">
-                <h3>Coding Project</h3>
-                <p>A simple web application built using basic HTML, CSS, and JavaScript.</p>
-                <span class="tag">Web Dev</span>
-            </div>
-
+      <div class="grid">
+        <div class="card">
+          <h3>Education</h3>
+          <p>Currently studying at [Your School Name]. Focusing on technology, design, and problem solving.</p>
         </div>
-    </section>
 
-    <section id="skills" class="container">
-        <h2>Skills</h2>
-        <div class="skills-list">
-            <span>HTML & CSS</span>
-            <span>Research & Writing</span>
-            <span>Public Speaking</span>
-            <span>Problem Solving</span>
-            <span>Team Collaboration</span>
+        <div class="card">
+          <h3>Interests</h3>
+          <p>Passionate about web development, UI/UX design, data analysis, and creative writing.</p>
         </div>
+      </div>
+
+      <h3 style="margin-top: 2.5rem; margin-bottom: 0.5rem;">Skills</h3>
+      <div class="skills-container">
+        <span class="badge">HTML5 / CSS3</span>
+        <span class="badge">JavaScript Basics</span>
+        <span class="badge">Research & Analysis</span>
+        <span class="badge">Public Speaking</span>
+        <span class="badge">Git / GitHub</span>
+      </div>
     </section>
 
-    <section id="contact" class="container">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out for school collaborations or questions!</p>
-        <p><strong>Email:</strong> your.email@example.com</p>
-    </section>
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+      <h2 class="section-title">Portfolio</h2>
+      <p class="section-desc">Selected projects and assignments created for school and self-learning.</p>
 
-    <footer>
-        <p>&copy; 2026 [Your Name]. Built with HTML & CSS.</p>
-    </footer>
+      <div class="grid">
+        <div class="card">
+          <h3>Science Fair Presentation</h3>
+          <p>An interactive research project covering local environmental data and key analytical takeaways.</p>
+          <div class="skills-container">
+            <span class="badge">Research</span>
+            <span class="badge">Data</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Personal Portfolio Site</h3>
+          <p>A modern responsive single-page web layout hosted on GitHub Pages.</p>
+          <div class="skills-container">
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>History Digital Report</h3>
+          <p>A structured timeline document exploring key historical shifts in technology over time.</p>
+          <div class="skills-container">
+            <span class="badge">Writing</span>
+            <span class="badge">History</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 [Your Name]. Built with HTML & CSS.</p>
+  </footer>
 
 </body>
 </html>
