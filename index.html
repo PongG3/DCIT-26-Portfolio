@@ -3,10 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>My Student Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my GitHub Pages site.</p>
+
+    <header>
+        <nav>
+            <div class="logo">MyPortfolio</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Hi, I'm <span class="highlight">[Your Name]</span></h1>
+        <p>A passionate student building projects and learning web development.</p>
+        <a href="#projects" class="btn">View My Work</a>
+    </section>
+
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <p>I am currently a student interested in technology, design, and problem-solving. This portfolio showcases my academic work, personal projects, and skills as I continue learning.</p>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>School Projects</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <h3>Science Fair Project</h3>
+                <p>A research project analyzing local water quality using data collection and charts.</p>
+                <span class="tag">Research</span>
+            </div>
+
+            <div class="project-card">
+                <h3>History Essay & Presentation</h3>
+                <p>An interactive digital presentation covering major historical events of the 20th century.</p>
+                <span class="tag">History</span>
+            </div>
+
+            <div class="project-card">
+                <h3>Coding Project</h3>
+                <p>A simple web application built using basic HTML, CSS, and JavaScript.</p>
+                <span class="tag">Web Dev</span>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" class="container">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <span>HTML & CSS</span>
+            <span>Research & Writing</span>
+            <span>Public Speaking</span>
+            <span>Problem Solving</span>
+            <span>Team Collaboration</span>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out for school collaborations or questions!</p>
+        <p><strong>Email:</strong> your.email@example.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 [Your Name]. Built with HTML & CSS.</p>
+    </footer>
+
 </body>
 </html>
