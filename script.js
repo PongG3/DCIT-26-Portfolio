@@ -1,25 +1,18 @@
-// mobile //
-
 const menuIcon = document.getElementById("menu-icon");
 const navLinks = document.getElementById("navLinks");
+const navItems = document.querySelectorAll(".nav-links a");
+const scrollTopButton = document.getElementById("scrollTop");
 
 
-// open and close moible menu
 menuIcon.addEventListener("click", function () {
 
     navLinks.classList.toggle("show");
 
-    // change hamburger icon to x
     menuIcon.classList.toggle("bx-menu");
     menuIcon.classList.toggle("bx-x");
 
 });
 
-
-
-// close menu after navigation click
-
-const navItems = document.querySelectorAll(".nav-links a");
 
 navItems.forEach(function (link) {
 
@@ -28,7 +21,6 @@ navItems.forEach(function (link) {
         navLinks.classList.remove("show");
 
         menuIcon.classList.add("bx-menu");
-
         menuIcon.classList.remove("bx-x");
 
     });
@@ -36,26 +28,21 @@ navItems.forEach(function (link) {
 });
 
 
-
-// active navigation click
-
-const sections = document.querySelectorAll("section");
-
-window.addEventListener("scroll", function () {
-
-    let currentSection = "";
-
-    sections.forEach(function (section) {
-
-        const sectionTop = section.offsetTop - 180;
-
-        const sectionHeight = section.offsetHeight;
+const navigationSections = document.querySelectorAll(
+    "#home, #about, #portfolio, #contact"
+);
 
 
-        if (
-            window.scrollY >= sectionTop &&
-            window.scrollY < sectionTop + sectionHeight
-        ) {
+function updateActiveNavigation() {
+
+    let currentSection = "home";
+
+    const scrollPosition = window.scrollY + 220;
+
+
+    navigationSections.forEach(function (section) {
+
+        if (scrollPosition >= section.offsetTop) {
 
             currentSection = section.getAttribute("id");
 
@@ -77,13 +64,15 @@ window.addEventListener("scroll", function () {
 
     });
 
-});
-
-// scroll top to bottom
-const scrollTopButton = document.getElementById("scrollTop");
+}
 
 
-window.addEventListener("scroll", function () {
+window.addEventListener("scroll", updateActiveNavigation);
+
+window.addEventListener("load", updateActiveNavigation);
+
+
+function updateScrollTopButton() {
 
     if (window.scrollY > 500) {
 
@@ -95,9 +84,27 @@ window.addEventListener("scroll", function () {
 
     }
 
+}
+
+
+window.addEventListener("scroll", updateScrollTopButton);
+
+window.addEventListener("load", updateScrollTopButton);
+
+
+window.addEventListener("resize", function () {
+
+    if (window.innerWidth > 768) {
+
+        navLinks.classList.remove("show");
+
+        menuIcon.classList.add("bx-menu");
+        menuIcon.classList.remove("bx-x");
+
+    }
+
 });
 
-// prevent empty links sa refresh
 
 const emptyLinks = document.querySelectorAll('a[href="#"]');
 
