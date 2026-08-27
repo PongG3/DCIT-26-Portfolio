@@ -1,331 +1,718 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Portfolio</title>
-  <style>
-    /* Global Variables & Reset */
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --accent-color: #6366f1;
-      --accent-hover: #4f46e5;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: rgba(255, 255, 255, 0.1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    }
+    <title>Kevin Gutierrez | Portfolio</title>
 
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 80px;
-    }
+    <link rel="stylesheet" href="style.css">
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    /* Header & Navigation */
-    header {
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(12px);
-      background: rgba(15, 23, 42, 0.85);
-      border-bottom: 1px solid var(--border-color);
-      z-index: 100;
-    }
-
-    nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.2rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--accent-color);
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-color);
-    }
-
-    /* Main Container & Sections */
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    section {
-      padding: 5rem 0;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    section:last-of-type {
-      border-bottom: none;
-    }
-
-    /* Hero Section */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
-      padding-top: 3rem;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      max-width: 600px;
-    }
-
-    /* Buttons */
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary {
-      background-color: var(--accent-color);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--accent-hover);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background-color: transparent;
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-    }
-
-    .btn-secondary:hover {
-      background-color: var(--card-bg);
-      transform: translateY(-2px);
-    }
-
-    /* Section Headers */
-    .section-title {
-      font-size: 2.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-desc {
-      color: var(--text-muted);
-      max-width: 600px;
-      margin-bottom: 2rem;
-    }
-
-    /* Cards & Grids */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(99, 102, 241, 0.4);
-    }
-
-    .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    /* Skill Badges */
-    .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-
-    .badge {
-      background: rgba(99, 102, 241, 0.15);
-      color: #a5b4fc;
-      padding: 0.4rem 0.9rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      border: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-    }
-  </style>
+    <!-- boxicons -->
+    <link
+        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+        rel="stylesheet"
+    >
 </head>
+
 <body>
 
-  <!-- Navigation -->
-  <header>
-    <nav>
-      <a href="#home" class="logo">My Portfolio<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-      </ul>
+    <!-- nav bar -->
+    <nav class="navbar">
+
+        <a href="#home" class="logo">
+            Kevin<span>.</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+
+            <li>
+                <a href="#home" class="active">Home</a>
+            </li>
+
+            <li>
+                <a href="#about">About Me</a>
+            </li>
+
+            <li>
+                <a href="#portfolio">Portfolio</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
+        </ul>
+
+        <i class="bx bx-menu" id="menu-icon"></i>
+
     </nav>
-  </header>
 
-  <main>
-    <!-- Home Section -->
-    <section id="home" class="hero">
-      <h1>Hello, I'm <span class="gradient-text">Kevin O. Gutierrez</span></h1>
-      <p>Welcome to my academic space. I am Kevin Gutierrez, currently pursuing a Bachelor of Science in Computer Science at Cavite State University – Silang Campus.</p>
-      <div class="btn-group">
-        <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
-        <a href="#about" class="btn btn-secondary">More About Me</a>
-      </div>
+
+    <!-- home -->
+    <section class="home" id="home">
+
+        <!-- left side -->
+        <div class="home-content">
+
+            <p class="small-heading">
+                Hello, I'm
+            </p>
+
+            <h1>
+                Kevin <span>Gutierrez</span>
+            </h1>
+
+            <h2>
+                Computer Science Student
+            </h2>
+
+            <p class="home-description">
+                Welcome to my personal portfolio. I am a Computer Science
+                student who enjoys learning programming and web development
+                while continuously improving my technical and problem-solving
+                skills.
+            </p>
+
+
+            <!-- buttons -->
+            <div class="home-buttons">
+
+                <a href="#about" class="btn">
+                    About Me
+                </a>
+
+                <a href="#portfolio" class="btn btn-outline">
+                    View Portfolio
+                </a>
+
+            </div>
+
+
+            <!-- socmed icons -->
+            <div class="social-icons">
+
+                <!-- github link -->
+                <a href="https://github.com/PongG3" aria-label="GitHub">
+                    <i class="bx bxl-github"></i>
+                </a>
+
+                <!-- fb link -->
+                <a href="https://www.facebook.com/profile.php?id=61593769561186" aria-label="Facebook">
+                    <i class="bx bxl-facebook"></i>
+                </a>
+
+                <!-- ig link -->
+                <a href="#" aria-label="Instagram">
+                    <i class="bx bxl-instagram"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- right side profile image -->
+        <div class="home-image">
+
+            <div class="image-container">
+
+                <img
+                    src="images/profile.jpg"
+                    alt="Kevin Gutierrez Profile Picture"
+                >
+
+            </div>
+
+        </div>
+
     </section>
 
-    <!-- About Me Section -->
-    <section id="about">
-      <h2 class="section-title">About Me</h2>
-      <p class="section-desc">A brief introduction to my background, education, and skills.</p>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Education</h3>
-          <p>Currently studying at [Your School Name]. Focusing on technology, design, and problem solving.</p>
+
+    <!-- about me-->
+    <section class="about" id="about">
+
+        <!-- title -->
+        <div class="section-heading">
+
+            <p>Get to know me</p>
+
+            <h2>
+                About <span>Me</span>
+            </h2>
+
         </div>
 
-        <div class="card">
-          <h3>Interests</h3>
-          <p>Passionate about web development, UI/UX design, data analysis, and creative writing.</p>
-        </div>
-      </div>
 
-      <h3 style="margin-top: 2.5rem; margin-bottom: 0.5rem;">Skills</h3>
-      <div class="skills-container">
-        <span class="badge">HTML5 / CSS3</span>
-        <span class="badge">JavaScript Basics</span>
-        <span class="badge">Research & Analysis</span>
-        <span class="badge">Public Speaking</span>
-        <span class="badge">Git / GitHub</span>
-      </div>
+        <!-- about container -->
+        <div class="about-container">
+
+            <div class="about-text">
+
+                <h3>
+                    Hi! I'm Kevin Gutierrez.
+                </h3>
+
+                <p>
+                    I am currently pursuing a Bachelor of Science in Computer
+                    Science at Cavite State University - Silang Campus.
+                </p>
+
+                <p>
+                    I am interested in programming, web development, and
+                    learning new technologies. I enjoy solving problems,
+                    creating simple programs, and applying what I learn
+                    through school activities and programming exercises.
+                </p>
+
+                <p>
+                    My goal is to continuously improve my knowledge and skills
+                    as I continue my journey in Computer Science.
+                </p>
+
+
+                <!-- personal details -->
+                <div class="about-details">
+
+                    <div class="detail">
+
+                        <i class="bx bx-book-open"></i>
+
+                        <div>
+                            <h4>Program</h4>
+                            <p>BS Computer Science</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <i class="bx bx-buildings"></i>
+
+                        <div>
+                            <h4>School</h4>
+                            <p>
+                                Cavite State University -
+                                Silang Campus
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <i class="bx bx-map"></i>
+
+                        <div>
+                            <h4>Location</h4>
+                            <p>Dasmarinas, Cavite</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- skills -->
+
+        <div class="skills-heading">
+
+            <p>Programming Languages & Technologies</p>
+
+            <h2>
+                My <span>Skills</span>
+            </h2>
+
+        </div>
+
+
+        <div class="skills-container">
+
+            <!-- si plasplas -->
+            <div class="skill-card">
+
+                <i class="bx bx-code-alt"></i>
+
+                <h3>C++</h3>
+
+                <p>
+                    Programming fundamentals, logic, and problem-solving.
+                </p>
+
+            </div>
+
+
+            <!-- si sharp -->
+            <div class="skill-card">
+
+                <i class="bx bx-code-curly"></i>
+
+                <h3>C#</h3>
+
+                <p>
+                    Learning object-oriented programming and application
+                    development.
+                </p>
+
+            </div>
+
+
+            <!-- eych ti em el -->
+            <div class="skill-card">
+
+                <i class="bx bxl-html5"></i>
+
+                <h3>HTML</h3>
+
+                <p>
+                    Creating organized and structured web pages.
+                </p>
+
+            </div>
+
+
+            <!-- si es es -->
+            <div class="skill-card">
+
+                <i class="bx bxl-css3"></i>
+
+                <h3>CSS</h3>
+
+                <p>
+                    Designing responsive and visually appealing websites.
+                </p>
+
+            </div>
+
+
+            <!-- jaba skrip -->
+            <div class="skill-card">
+
+                <i class="bx bxl-javascript"></i>
+
+                <h3>JavaScript</h3>
+
+                <p>
+                    Adding interaction and basic functionality to websites.
+                </p>
+
+            </div>
+
+        </div>
+
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-      <h2 class="section-title">Portfolio</h2>
-      <p class="section-desc">Selected projects and assignments created for school and self-learning.</p>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Science Fair Presentation</h3>
-          <p>An interactive research project covering local environmental data and key analytical takeaways.</p>
-          <div class="skills-container">
-            <span class="badge">Research</span>
-            <span class="badge">Data</span>
-          </div>
+
+    <!-- porfofolio -->
+    <section class="portfolio" id="portfolio">
+
+        <!-- title -->
+        <div class="section-heading">
+
+            <p>My school works</p>
+
+            <h2>
+                My <span>Portfolio</span>
+            </h2>
+
         </div>
 
-        <div class="card">
-          <h3>Personal Portfolio Site</h3>
-          <p>A modern responsive single-page web layout hosted on GitHub Pages.</p>
-          <div class="skills-container">
-            <span class="badge">HTML</span>
-            <span class="badge">CSS</span>
-          </div>
+
+        <p class="portfolio-description">
+
+            Here are some of my activities, quizzes, projects, achievements,
+            and other school works that I have completed throughout my studies.
+
+        </p>
+
+
+
+        <!-- portfolio gallery -->
+
+        <div class="portfolio-gallery">
+
+
+            <!-- item 1 -->
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img
+                        src="images/activity1.jpg"
+                        alt="3"
+                    >
+
+                </div>
+
+
+                <div class="portfolio-card-content">
+
+                    <span>Laboratory</span>
+
+                    <h3>
+                        Programming Activity
+                    </h3>
+
+                    <p>
+                        lab1
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- item 2 -->
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img
+                        src="images/quiz1.jpg"
+                        alt="2"
+                    >
+
+                </div>
+
+
+                <div class="portfolio-card-content">
+
+                    <span>Lecture   </span>
+
+                    <h3>
+                        Quiz 1
+                    </h3>
+
+                    <p>
+                        bagsak ako
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- item 3 -->
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img
+                        src="images/activity2.jpg"
+                        alt="3"
+                    >
+
+                </div>
+
+
+                <div class="portfolio-card-content">
+
+                    <span>Lecture</span>
+
+                    <h3>
+                        Essay 1
+                    </h3>
+
+                    <p>
+                        3/20
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- item 4 -->
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img
+                        src="images/project1.jpg"
+                        alt="4"
+                    >
+
+                </div>
+
+
+                <div class="portfolio-card-content">
+
+                    <span>Midterm Project</span>
+
+                    <h3>
+                        asda
+                    </h3>
+
+                    <p>
+                        asd
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- item 5 -->
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img
+                        src="images/certificate1.jpg"
+                        alt="5"
+                    >
+
+                </div>
+
+
+                <div class="portfolio-card-content">
+
+                    <span>asd</span>
+
+                    <h3>
+                        asdasd
+                    </h3>
+
+                    <p>
+                        asdad
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- item 6 -->
+            <div class="portfolio-card">
+
+                <div class="portfolio-image">
+
+                    <img
+                        src="images/activity3.jpg"
+                        alt="6"
+                    >
+
+                </div>
+
+
+                <div class="portfolio-card-content">
+
+                    <span>asdad</span>
+
+                    <h3>
+                        asdad
+                    </h3>
+
+                    <p>
+                       asldkpas
+                    </p>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="card">
-          <h3>History Digital Report</h3>
-          <p>A structured timeline document exploring key historical shifts in technology over time.</p>
-          <div class="skills-container">
-            <span class="badge">Writing</span>
-            <span class="badge">History</span>
-          </div>
+
+
+        <!-- contactt -->
+
+        <div class="contact-section">
+
+            <div class="contact-title">
+
+                <p>Let's connect</p>
+
+                <h2>
+                    Contact <span>Me</span>
+                </h2>
+
+            </div>
+
+
+            <div class="contact-container">
+
+
+                <!-- email -->
+                <div class="contact-card">
+
+                    <i class="bx bx-envelope"></i>
+
+                    <div>
+
+                        <h3>Email</h3>
+
+                        <a href="mailto:kevin.gutierrez@cvsu.edu.ph">
+
+                            kevin.gutierrez@cvsu.edu.ph
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- phone -->
+                <div class="contact-card">
+
+                    <i class="bx bx-phone"></i>
+
+                    <div>
+
+                        <h3>Phone</h3>
+
+                        <a href="tel:+639387182181">
+                            +63 938 718 2181
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- location -->
+                <div class="contact-card">
+
+                    <i class="bx bx-map"></i>
+
+                    <div>
+
+                        <h3>Location</h3>
+
+                        <p>
+                            Dasmarinas, Cavite
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- contact socials -->
+            <div class="contact-social">
+
+                <!-- GitHub -->
+                <a href="https://github.com/PongG3">
+
+                    <i class="bx bxl-github"></i>
+
+                    <span>GitHub</span>
+
+                </a>
+
+
+                <!-- fb -->
+                <a href="#">
+
+                    <i class="bx bxl-facebook"></i>
+
+                    <span>Facebook</span>
+
+                </a>
+
+
+                <!-- ig -->
+                <a href="#">
+
+                    <i class="bx bxl-instagram"></i>
+
+                    <span>Instagram</span>
+
+                </a>
+
+            </div>
+
         </div>
-      </div>
+
     </section>
-  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 [Your Name]. Built with HTML & CSS.</p>
-  </footer>
+
+
+    <!-- footer -->
+    <footer>
+
+        <a href="#home" class="footer-logo">
+
+            Kevin<span>.</span>
+
+        </a>
+
+
+        <p>
+            Computer Science Student
+        </p>
+
+
+        <div class="footer-social">
+
+            <a href="https://github.com/PongG3" aria-label="GitHub">
+                <i class="bx bxl-github"></i>
+            </a>
+
+            <a href="#" aria-label="Facebook">
+                <i class="bx bxl-facebook"></i>
+            </a>
+
+            <a href="#" aria-label="Instagram">
+                <i class="bx bxl-instagram"></i>
+            </a>
+
+        </div>
+
+
+        <div class="footer-line"></div>
+
+
+        <p class="copyright">
+
+            © 2026 Kevin Gutierrez. All Rights Reserved.
+
+        </p>
+
+
+        <p class="built">
+
+            Built with HTML, CSS & JavaScript
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- scroll to top-->
+    <a href="#home" class="scroll-top" id="scrollTop">
+
+        <i class="bx bx-up-arrow-alt"></i>
+
+    </a>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
 
 </body>
+
 </html>
