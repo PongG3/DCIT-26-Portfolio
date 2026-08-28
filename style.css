@@ -22,6 +22,11 @@ body {
 }
 
 
+body.lightbox-open {
+    overflow: hidden;
+}
+
+
 a {
     text-decoration: none;
     color: inherit;
@@ -36,6 +41,11 @@ ul {
 img {
     width: 100%;
     display: block;
+}
+
+
+button {
+    font-family: inherit;
 }
 
 
@@ -636,30 +646,204 @@ section {
 }
 
 
+/* =========================================
+   PORTFOLIO MULTIPLE IMAGES
+========================================= */
+
 .portfolio-image {
+    position: relative;
+
     width: 100%;
 
-    height: 240px;
+    height: 280px;
 
     overflow: hidden;
 
     background: #0b1220;
+
+    cursor: zoom-in;
 }
 
 
-.portfolio-image img {
+.portfolio-slides {
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+}
+
+
+.portfolio-photo {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
     width: 100%;
 
     height: 100%;
 
     object-fit: contain;
 
-    transition: 0.5s;
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: scale(0.98);
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease,
+        visibility 0.35s;
 }
 
 
-.portfolio-card:hover .portfolio-image img {
-    transform: scale(1.04);
+.portfolio-photo.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: scale(1);
+}
+
+
+/* LEFT AND RIGHT BUTTON */
+
+.portfolio-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(15, 23, 42, 0.82);
+
+    color: white;
+
+    font-size: 27px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transition: 0.3s;
+
+    z-index: 10;
+}
+
+
+.portfolio-prev {
+    left: 12px;
+}
+
+
+.portfolio-next {
+    right: 12px;
+}
+
+
+.portfolio-image:hover .portfolio-arrow {
+    opacity: 1;
+}
+
+
+.portfolio-arrow:hover {
+    background: var(--accent);
+
+    color: #082f49;
+
+    transform: translateY(-50%) scale(1.08);
+}
+
+
+/* IMAGE NUMBER */
+
+.portfolio-counter {
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    padding: 6px 10px;
+
+    background: rgba(15, 23, 42, 0.85);
+
+    border-radius: 20px;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    z-index: 10;
+}
+
+
+/* CLICK TO VIEW */
+
+.click-hint {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 7px 12px;
+
+    transform: translateX(-50%) translateY(10px);
+
+    background: rgba(15, 23, 42, 0.88);
+
+    border-radius: 20px;
+
+    color: white;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    transition: 0.3s;
+
+    pointer-events: none;
+
+    z-index: 9;
+}
+
+
+.click-hint i {
+    font-size: 15px;
+}
+
+
+.portfolio-image:hover .click-hint {
+    opacity: 1;
+
+    transform: translateX(-50%) translateY(0);
 }
 
 
@@ -698,6 +882,208 @@ section {
     font-size: 13px;
 
     line-height: 1.7;
+}
+
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+.lightbox {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 70px 100px;
+
+    background: rgba(2, 6, 23, 0.96);
+
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.3s;
+
+    z-index: 10000;
+}
+
+
+.lightbox.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.lightbox-content {
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.lightbox-content img {
+    width: auto;
+
+    max-width: 100%;
+
+    height: auto;
+
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    border-radius: 5px;
+
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+}
+
+
+/* CLOSE BUTTON */
+
+.lightbox-close {
+    position: absolute;
+
+    top: 25px;
+
+    right: 30px;
+
+    width: 48px;
+
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(30, 41, 59, 0.9);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 32px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    z-index: 10002;
+}
+
+
+.lightbox-close:hover {
+    background: var(--accent);
+
+    color: #082f49;
+
+    transform: rotate(90deg);
+}
+
+
+/* FULLSCREEN ARROWS */
+
+.lightbox-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transform: translateY(-50%);
+
+    background: rgba(30, 41, 59, 0.9);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 35px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    z-index: 10002;
+}
+
+
+.lightbox-prev {
+    left: 25px;
+}
+
+
+.lightbox-next {
+    right: 25px;
+}
+
+
+.lightbox-arrow:hover {
+    background: var(--accent);
+
+    color: #082f49;
+
+    transform: translateY(-50%) scale(1.08);
+}
+
+
+/* FULLSCREEN COUNTER */
+
+.lightbox-counter {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 0;
+
+    padding: 8px 14px;
+
+    transform: translateX(-50%);
+
+    background: rgba(30, 41, 59, 0.9);
+
+    border-radius: 20px;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
 }
 
 
@@ -1190,7 +1576,17 @@ footer > p {
 
 
     .portfolio-image {
-        height: 280px;
+        height: 320px;
+    }
+
+
+    .portfolio-arrow {
+        opacity: 1;
+    }
+
+
+    .click-hint {
+        display: none;
     }
 
 
@@ -1201,6 +1597,43 @@ footer > p {
 
     .section-heading h2 {
         font-size: 34px;
+    }
+
+
+    .lightbox {
+        padding: 70px 65px;
+    }
+
+
+    .lightbox-arrow {
+        width: 45px;
+
+        height: 45px;
+
+        font-size: 30px;
+    }
+
+
+    .lightbox-prev {
+        left: 10px;
+    }
+
+
+    .lightbox-next {
+        right: 10px;
+    }
+
+
+    .lightbox-close {
+        top: 15px;
+
+        right: 15px;
+
+        width: 43px;
+
+        height: 43px;
+
+        font-size: 28px;
     }
 
 }
@@ -1261,7 +1694,7 @@ footer > p {
 
 
     .portfolio-image {
-        height: 250px;
+        height: 280px;
     }
 
 
@@ -1288,6 +1721,16 @@ footer > p {
 
     .contact-card {
         align-items: flex-start;
+    }
+
+
+    .lightbox {
+        padding: 65px 50px;
+    }
+
+
+    .lightbox-content img {
+        max-height: 75vh;
     }
 
 }
